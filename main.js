@@ -12,7 +12,7 @@ console.log(`save triggered ${loop}`);
 
 const aTag = document.createElement('a');
 document.body.appendChild(aTag);
-aTag.href = canvas.toDataURL();
+aTag.href = canvas.toDataURL('image/png');
 aTag.download = `magic-image-${loop}.png`;
 aTag.click();
 aTag.remove();
@@ -73,15 +73,23 @@ return rgbColors[(parseInt(Math.random()*rgbColors.length))];
 const colors = ["red", "blue", "green", "orange", "yellow", "indigo", "violet", "lime", "deeppink", "teal", "aquamarine"];
 
 function makeArt() {
-
-for (let i=0; i<300; i++) {
+// set background white;
+let arrayShell = [];
+arrayShell.push (new Player(0,0,canvas.width,canvas.height,"white"));
+arrayShell[0].draw();
+arrayShell.length = 0;
+// console.log(arrayShell); // empty array, contents marked for garbage collection?;
   let maxWidth = 120;
   let minWidth = 20;
   let maxHeight = 80;
   let minHeight = 20;
 
-  let player = new Player(Math.random()*(canvas.width-maxWidth), Math.random()*(canvas.height-maxHeight), Math.random()*(maxWidth-minWidth)+minWidth, Math.random()*(maxHeight-minHeight)+minHeight,randomColor());
-  player.draw();
+for (let i=0; i<300; i++) {
+  arrayShell.push(new Player(Math.random()*(canvas.width-maxWidth), Math.random()*(canvas.height-maxHeight), Math.random()*(maxWidth-minWidth)+minWidth, Math.random()*(maxHeight-minHeight)+minHeight,randomColor()));
+  arrayShell[0].draw();
+  arrayShell.length = 0;
+  console.log(arrayShell);
+ 
 } // next rectangle;
 } // end function makeArt();
 
