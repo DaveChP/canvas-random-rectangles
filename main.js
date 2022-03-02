@@ -91,4 +91,4 @@ function stamp(){
 
 // makeArt();
 // each loop makes an image and saves it;
-loop(50);
+loop(10); // ~22 ms per file, tested up to 1000 (~22 seconds), fan kicked in;
